@@ -16,10 +16,10 @@ public class Main {
         String filePath = "C:\\Users\\Coty\\Java2\\tornado data\\us_tornado_dataset_1950_2021_mod.csv";
 
         Map<DayOfWeek, Integer> tornadoCount = new HashMap<>();
-        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
+        DateTimeFormatter customFormatter = DateTimeFormatter.ofPattern("M/d/yyyy");
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
-            String line;
+            String line; 
             while ((line = reader.readLine()) != null) {
                 String[] data = line.split(",");
                 try {
@@ -32,7 +32,7 @@ public class Main {
                     tornadoCount.merge(dayOfWeek, 1, Integer::sum);
 
                 } catch (DateTimeParseException | NumberFormatException e) {
-
+                    System.err.println("Error parsing data: " + e.getMessage());
                 }
             }
 
